@@ -1,0 +1,7 @@
+{
+  "appId": "br.thebridge.app",
+  "appName": "T.H.E.B.R.I.D.G.E",
+  "webDir": "web",
+  "server": { "androidScheme": "http", "cleartext": true },
+  "android": { "allowMixedContent": true, "backgroundColor": "#090d13" }
+}

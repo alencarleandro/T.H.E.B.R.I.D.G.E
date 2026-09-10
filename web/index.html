@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' ws:; media-src 'self' blob:; img-src 'self' data:; object-src 'none'; base-uri 'self'">
+  <meta name="theme-color" content="#090d13"><title>T.H.E.B.R.I.D.G.E</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div class="shell">
+  <aside><a class="brand" href="#"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30V12l15-7 15 7v18M5 20h30M12 17v13m8-16v16m8-13v13"/></svg><span>THE BRIDGE<small>PERSONAL GAME STREAMING</small></span></a><div class="rail-label">SEU ECOSSISTEMA</div><button class="nav active" data-mode="client"><span>↗</span> Jogar remotamente</button><button class="nav" data-mode="host" id="host-nav"><span>▣</span> Transmitir deste PC</button><div class="rail-bottom"><span class="led"></span> Conexão direta · LAN<small>VERSÃO EXPERIMENTAL 0.1.0</small></div></aside>
+  <main>
+   <header><span>WORKSPACE <b>/</b> <span id="device-name">Meu ecossistema</span></span><span class="badge">PRIVATE ACCESS</span></header>
+   <section class="intro"><div class="eyebrow">SEU JOGO. EM QUALQUER TELA.</div><h1>Menos distância.<br><em>Mais jogo.</em></h1><p>Seu PC faz o trabalho pesado.<br>Você escolhe de onde joga.</p><div class="orbit" aria-hidden="true"><div class="orbit-ring"></div><div class="orbit-core">B<span>CONNECTED BY YOU</span></div><i class="node n1"></i><i class="node n2"></i></div></section>
+   <div class="workspace">
+    <section class="card connection">
+     <div class="card-heading"><span class="step">01</span><h2 id="mode-title">Conectar ao seu PC</h2><span class="small-tag" id="mode-tag">RECEPTOR</span></div>
+     <div id="client-panel">
+      <p class="muted">Abra o host no PC de jogos e informe os dados da sessão.</p>
+      <label for="address">ENDEREÇO DO HOST</label><input id="address" placeholder="Ex.: 192.168.1.10" autocomplete="off" spellcheck="false">
+      <label for="token">CÓDIGO DA SESSÃO</label><input id="token" placeholder="Código exibido no PC de jogos" autocomplete="off" spellcheck="false" maxlength="32">
+      <button id="connect" class="primary">Conectar e jogar <span>↗</span></button>
+      <p class="hint">Os dois aparelhos precisam estar na mesma rede ou VPN. O PC pedirá sua autorização.</p>
+     </div>
+     <div id="host-panel" hidden>
+      <p class="muted">Deixe o jogo aberto e escolha a tela para transmitir.</p>
+      <label for="source">MONITOR</label><select id="source"></select>
+      <button id="start-host" class="primary">Abrir sessão <span>↗</span></button>
+      <div id="pairing" hidden><label>ENDEREÇO DO SEU PC</label><output id="host-address"></output><label>CÓDIGO DA SESSÃO</label><output id="host-token"></output><p class="hint">Compartilhe o código apenas com seu receptor. Ctrl + Alt + F12 encerra o host.</p></div>
+     </div>
+     <div id="status" role="status"><span class="led neutral"></span><span id="status-text">Pronto para conectar</span></div>
+     <button id="disconnect" class="danger" hidden>Encerrar sessão</button>
+    </section>
+    <section class="card settings"><div class="card-heading"><span class="step">02</span><h2>Do seu jeito</h2></div><p class="muted">O perfil é aplicado pelo PC que transmite.</p><label for="profile">PERFIL DE TRANSMISSÃO</label><select id="profile"><option value="fast">Resposta rápida · 720p / 60 FPS</option><option value="balanced" selected>Equilibrado · 1080p / 60 FPS</option><option value="quality">Mais fluidez · 1080p / 120 FPS</option></select><label for="bitrate">BITRATE MÁXIMO <strong id="bitrate-value">20 Mbps</strong></label><input type="range" id="bitrate" min="5" max="80" value="20" step="5"><div class="range-labels"><span>5 Mbps</span><span>80 Mbps</span></div><div class="setting-row"><div><b>Áudio do jogo</b><small>Transmitir o som do PC</small></div><input type="checkbox" id="audio" checked aria-label="Transmitir áudio"></div><div class="setting-row"><div><b>Controles na tela</b><small>WASD, câmera e ações por toque</small></div><input type="checkbox" id="touch" aria-label="Controles na tela"></div><p class="hint">FPS e aceleração por hardware dependem dos aparelhos. O perfil de 120 FPS é experimental.</p></section>
+   </div>
+   <section class="telemetry"><div><span class="led neutral" id="connection-led"></span><b id="connection-label">SEM TRANSMISSÃO</b></div><div><strong id="stat-rtt">—</strong><small>RTT DA REDE</small></div><div><strong id="stat-fps">—</strong><small>FPS RECEBIDOS</small></div><div><strong id="stat-rate">—</strong><small>BITRATE REAL</small></div><div><strong id="stat-loss">—</strong><small>PACOTES PERDIDOS</small></div></section>
+   <footer><span>T.H.E.B.R.I.D.G.E</span><span>Construído para o seu ecossistema.</span><span>WINDOWS ↔ WINDOWS / ANDROID</span></footer>
+  </main>
+ </div>
+ <section id="player" hidden><video id="stream" autoplay playsinline></video><div class="player-bar"><b>THE BRIDGE</b><span id="player-state">Conectando…</span><button id="capture-mouse">Capturar mouse</button><button id="fullscreen">Tela cheia</button><button id="sound">Ativar som</button><button id="leave-player">Sair</button></div><div id="touch-controls" hidden><div class="dpad"><button data-key="KeyW">W</button><button data-key="KeyA">A</button><button data-key="KeyS">S</button><button data-key="KeyD">D</button></div><div id="look-pad">DESLIZE PARA MIRAR</div><div class="actions"><button data-key="KeyE">E</button><button data-key="KeyR">R</button><button data-key="Space">PULAR</button><button data-mouse="0">ATIRAR</button><button data-mouse="2">MIRAR</button><button data-key="Escape">ESC</button></div></div><div class="player-tip" id="player-tip">Clique em Capturar mouse para controlar. Esc libera o cursor. Controle físico: mapeamento WASD + mouse.</div></section>
+ <script src="app.js"></script>
+</body></html>

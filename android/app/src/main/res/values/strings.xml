@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">T.H.E.B.R.I.D.G.E</string>
+    <string name="title_activity_main">T.H.E.B.R.I.D.G.E</string>
+    <string name="package_name">br.thebridge.app</string>
+    <string name="custom_url_scheme">br.thebridge.app</string>
+</resources>
